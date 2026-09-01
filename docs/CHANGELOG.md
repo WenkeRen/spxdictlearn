@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the SPXPCA project will be documented in this file.
+All notable changes to the spxdictlearn project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -124,7 +124,7 @@ V_pruned, W_pruned, info = prune_and_sort_dictionary(
   - **`nnls_pgd()`**: GIL-free NNLS with `@njit(nogil=True)`
     - Projected Gradient Descent with Armijo line search
     - Precomputes A.T @ A and A.T @ b for efficiency
-    - Converges in 50-200 iterations for typical SPXPCA problems
+    - Converges in 50-200 iterations for typical spxdictlearn problems
     - fastmath=True enables SIMD vectorization
 
   - **`nnls_pgd_fallback()`**: Pure NumPy implementation

@@ -1,3 +1,3 @@
 """
-Test suite for SPXPCA package
+Test suite for the spxdictlearn package
 """

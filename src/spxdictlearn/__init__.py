@@ -1,5 +1,5 @@
 """
-SPXPCA - Global NMF for Heterogeneous Spectra
+spxdictlearn — Global NMF for Heterogeneous Spectra
 
 A Python package implementing Alternating Least Squares Weighted
 Non-Negative Matrix Factorization (ALS-WNMF) for extracting physically

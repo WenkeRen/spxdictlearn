@@ -34,7 +34,7 @@ preferred-citation:
   type: article
   title: >-
     Data-Driven Near-Infrared Spectral Templates for SPHEREx: Disentangling AGN
-    and Host Galaxy Emission
+    and AGN-Host-Galaxy Emission
   authors:
     - family-names: Ren
       given-names: Wenke

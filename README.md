@@ -1,4 +1,4 @@
-# SPXPCA - Global NMF for Heterogeneous Spectra
+# spxdictlearn — Global NMF for Heterogeneous Spectra
 
 Alternating Least Squares Weighted Non-Negative Matrix Factorization (ALS-WNMF) for extracting physically meaningful spectra from sparse, unaligned, and noisy astronomical observations.
 

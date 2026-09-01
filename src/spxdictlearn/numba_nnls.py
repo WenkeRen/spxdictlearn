@@ -9,7 +9,7 @@ Algorithm: Projected Gradient Descent with Armijo Line Search
 - Precompute A.T @ A and A.T @ b for efficiency
 - Project onto non-negative orthant after each gradient step
 - Use Armijo backtracking to ensure monotonic convergence
-- Converges in 50-200 iterations for typical SPXPCA problems (K=3-20, M=500-12000)
+- Converges in 50-200 iterations for typical spxdictlearn problems (K=3-20, M=500-12000)
 
 Performance:
 - @njit(nogil=True) releases GIL for true parallelism

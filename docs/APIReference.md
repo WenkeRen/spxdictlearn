@@ -1,9 +1,9 @@
-# API Reference: SPXPCA
+# API Reference: spxdictlearn
 
 **Version:** 0.4.1
 **Last Updated:** 2026-03-04
 
-This document provides comprehensive API documentation for all public functions in the SPXPCA package.
+This document provides comprehensive API documentation for all public functions in the spxdictlearn package.
 
 ---
 
