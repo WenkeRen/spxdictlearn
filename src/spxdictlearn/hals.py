@@ -148,7 +148,7 @@ def precompute_hals_constants(
     if verbose:
         print("  Pass 2/2: Recomputing B_n and aligning to global template...")
 
-    # Reverse mapping: linear_index → position in global_B_data columns
+    # Reverse mapping: linear_index -> position in global_B_data columns
     # T² entries × 4 bytes ≈ 16 MB for T=2048
     reverse_map = np.full(T * T, -1, dtype=np.int32)
     reverse_map[global_rc_sorted] = np.arange(nnz_global, dtype=np.int32)

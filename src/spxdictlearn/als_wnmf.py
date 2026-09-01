@@ -74,7 +74,7 @@ def e_step_single_source(
     b = flux / error
 
     # Compute design matrix: A = (R @ V) / σ[:, newaxis]
-    U = R_n @ V  # Sparse × Dense → Dense, shape (M_n, K)
+    U = R_n @ V  # Sparse × Dense -> Dense, shape (M_n, K)
     A = U / error[:, np.newaxis]  # Row-wise scaling, shape (M_n, K)
 
     # Solve NNLS with selected backend
@@ -214,11 +214,11 @@ def m_step_single_source(
     q = y_pred / (error * error)
 
     # Compute numerator contribution: P_n = (R^T @ s) ⊗ w^T
-    RnT_s = R_n.T @ s  # Sparse.T @ Dense_Vector → Dense, shape (T,)
+    RnT_s = R_n.T @ s  # Sparse.T @ Dense_Vector -> Dense, shape (T,)
     P_n = np.outer(RnT_s, w_n)
 
     # Compute denominator contribution: Q_n = (R^T @ q) ⊗ w^T
-    RnT_q = R_n.T @ q  # Sparse.T @ Dense_Vector → Dense, shape (T,)
+    RnT_q = R_n.T @ q  # Sparse.T @ Dense_Vector -> Dense, shape (T,)
     Q_n = np.outer(RnT_q, w_n)
 
     return P_n, Q_n
@@ -791,7 +791,7 @@ def als_wnmf(
             print(f"Using second-order smoothness: γ = {gamma:.6f} ({mode_str})")
         norm_str = "enabled" if normalize else "disabled"
         if e_step_method == "numba":
-            numba_str = f"numba-pgd ({'available' if NUMBA_AVAILABLE else 'unavailable → fallback'})"
+            numba_str = f"numba-pgd ({'available' if NUMBA_AVAILABLE else 'unavailable -> fallback'})"
             warm_str = ", warm-start" if warm_start else ""
             estep_str = f"{numba_str}{warm_str}"
         else:

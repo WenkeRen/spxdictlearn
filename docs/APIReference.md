@@ -399,7 +399,7 @@ print(f"Original: {V.shape[1]} components")
 
 # Basic pruning
 V_pruned, W_pruned, info = prune_and_sort_dictionary(V, W, 0.95)
-print(f"Pruned: {info['K_before']} → {info['K_after']} components")
+print(f"Pruned: {info['K_before']} -> {info['K_after']} components")
 
 # With proxy smoothing for noisy spectra
 V_pruned, W_pruned, info = prune_and_sort_dictionary(

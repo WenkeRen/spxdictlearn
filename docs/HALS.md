@@ -241,7 +241,7 @@ V_als, W_als, _ = als_wnmf(
 V_pruned, W_pruned, info = prune_and_sort_dictionary(
     V_als, W_als, similarity_threshold=0.95
 )
-print(f"Pruned: {info['K_before']} → {info['K_after']} components")
+print(f"Pruned: {info['K_before']} -> {info['K_after']} components")
 
 # Step 3: HALS refinement (faster with smaller K)
 V_final, W_final, loss = hals_wnmf(

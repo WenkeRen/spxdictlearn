@@ -129,7 +129,7 @@ Where:
 
 ### Key Features
 
-- **Memory efficient**: Response matrices in CSR sparse format (~480GB → ~2GB)
+- **Memory efficient**: Response matrices in CSR sparse format (~480GB -> ~2GB)
 - **Parallel computation**: E-step parallelized with joblib; optional GIL-free
   Numba NNLS backend for true thread parallelism
 - **Mathematical correctness**: Exact Gaussian integration via CDF

@@ -18,11 +18,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Updated coefficients**:
   - **First-order smoothness (β)**:
-    - Interior points: 4.0 → 8.0 (row sum: 4 + |-2| + |-2| = 8)
-    - Boundary points: 2.0 → 4.0
+    - Interior points: 4.0 -> 8.0 (row sum: 4 + |-2| + |-2| = 8)
+    - Boundary points: 2.0 -> 4.0
   - **Second-order smoothness (γ)**:
-    - Interior points: 12.0 → 32.0 (row sum: 12 + |-8| + |-8| + |2| + |2| = 32)
-    - Near-boundary points: 10.0 → 24.0
+    - Interior points: 12.0 -> 32.0 (row sum: 12 + |-8| + |-8| + |2| + |2| = 32)
+    - Near-boundary points: 10.0 -> 24.0
 
 - **Impact**: Ensures PGD step sizes are conservative enough for stable convergence when regularization (β > 0 or γ > 0) is enabled in HALS.
 
@@ -149,7 +149,7 @@ V_pruned, W_pruned, info = prune_and_sort_dictionary(
 
 #### Version Updates
 
-- **Version**: 0.3.3 → 0.4.0
+- **Version**: 0.3.3 -> 0.4.0
 - **`__init__.py`**: Added 14 new exports (HALS, pruning, numba functions)
   - `hals_wnmf`, `m_step_hals`, `precompute_hals_constants`, `compute_M_tensor`
   - `prune_and_sort_dictionary`, `compute_cosine_similarity_matrix`, `cluster_similar_components`, `merge_components_by_cluster`
@@ -184,7 +184,7 @@ V_pruned, W_pruned, info = prune_and_sort_dictionary(
 
 ### Migration Guide
 
-#### Recommended Pipeline: ALS-WNMF → Pruning → HALS
+#### Recommended Pipeline: ALS-WNMF -> Pruning -> HALS
 
 ```python
 # Step 1: Run ALS-WNMF to get initial decomposition
@@ -200,8 +200,8 @@ V_pruned, W_pruned, info = prune_and_sort_dictionary(
     similarity_threshold=0.95  # Merge components with S >= 0.95
 )
 
-print(f"Pruned: {V_als.shape[1]} → {V_pruned.shape[1]} components")
-# Output: Pruned: 40 → 25 components (example)
+print(f"Pruned: {V_als.shape[1]} -> {V_pruned.shape[1]} components")
+# Output: Pruned: 40 -> 25 components (example)
 
 # Step 3: HALS refinement for better orthogonality
 V_final, W_final, loss_hals = hals_wnmf(
@@ -307,9 +307,9 @@ For typical SPHEREx datasets with M_total ~ 20 million observations:
 - **Switched from `loky` to `threading` backend** in `joblib.Parallel`
   - scipy.sparse operations (CSR matrix multiplication) release the GIL
   - Eliminates serialization/deserialization overhead of process-based parallelism
-  - **E-step**: 3-4× speedup (~20s → ~6-8s)
-  - **M-step**: 70× speedup (~22s → ~0.3s)
-  - **Total**: ~6× speedup per iteration (~50s → ~8s)
+  - **E-step**: 3-4× speedup (~20s -> ~6-8s)
+  - **M-step**: 70× speedup (~22s -> ~0.3s)
+  - **Total**: ~6× speedup per iteration (~50s -> ~8s)
 
 #### Code Cleanup
 
@@ -355,7 +355,7 @@ No API changes. Users automatically benefit from improved performance.
 - **Parallelized M-step computation**: Replaced serial source loop with `joblib.Parallel`
   - Added `m_step_single_source()` function for per-source contribution computation
   - Added `n_jobs` parameter to `m_step()` (default: -1, all CPUs)
-  - Uses reduction pattern: parallel computation → sum contributions
+  - Uses reduction pattern: parallel computation -> sum contributions
   - Expected speedup: 2-3× on multi-core systems for large N
 
 - **Removed redundant chi² computation**: Eliminated duplicate loss calculation after E-step
@@ -434,10 +434,10 @@ V, W, loss_history = als_wnmf(
 #### Normalization Details
 
 When `normalize=True` (default), all terms are normalized:
-- **Chi-squared**: divided by `M_total` → reduced chi-squared
-- **L2 (alpha)**: divided by `T*K` → average squared element
-- **First-order smoothness (beta)**: divided by `(T-1)*K` → average squared slope
-- **Second-order smoothness (gamma)**: divided by `(T-2)*K` → average squared curvature
+- **Chi-squared**: divided by `M_total` -> reduced chi-squared
+- **L2 (alpha)**: divided by `T*K` -> average squared element
+- **First-order smoothness (beta)**: divided by `(T-1)*K` -> average squared slope
+- **Second-order smoothness (gamma)**: divided by `(T-2)*K` -> average squared curvature
 
 #### Mathematical Formulation (v0.3.0)
 

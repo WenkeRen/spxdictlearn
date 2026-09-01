@@ -16,7 +16,7 @@ This guide explains how to use regularization parameters in ALS-WNMF and HALS to
 5. [Second-Order Smoothness (γ)](#second-order-smoothness-γ)
 6. [Normalization Mode](#normalization-mode)
 7. [Parameter Tuning Guide](#parameter-tuning-guide)
-8. [Migration Guide: v0.2.x → v0.3.0](#migration-guide-v02x--v030)
+8. [Migration Guide: v0.2.x -> v0.3.0](#migration-guide-v02x--v030)
 
 ---
 
@@ -46,9 +46,9 @@ $$\text{Loss} = \frac{\chi^2}{M_{\text{total}}} + \frac{\alpha}{TK} ||\mathbf{V}
 | **γ** | Second-order smoothness | Local curvature | Encourages linear/flat regions |
 
 **Key Insight:** Each term addresses a different type of unphysical behavior:
-- **α** → "Don't make the spectrum too bright"
-- **β** → "Don't make the spectrum too jagged"
-- **γ** → "Don't make the spectrum too curved"
+- **α** -> "Don't make the spectrum too bright"
+- **β** -> "Don't make the spectrum too jagged"
+- **γ** -> "Don't make the spectrum too curved"
 
 ---
 
@@ -174,7 +174,7 @@ This is the **discrete Laplacian squared**.
 
 Second-order smoothness penalizes curvature (deviations from linearity). Key properties:
 
-- **Linear spectra have zero penalty:** $V_t = a + bt$ → $\text{Curvature} = 0$
+- **Linear spectra have zero penalty:** $V_t = a + bt$ -> $\text{Curvature} = 0$
 - **Quadratic and higher have positive penalty:** Encourages linear/flat regions
 - **Unlike β, allows linear trends:** Preserves overall spectral slopes
 
@@ -357,7 +357,7 @@ for alpha in [0.001, 0.01, 0.1]:
 
 ---
 
-## Migration Guide: v0.2.x → v0.3.0
+## Migration Guide: v0.2.x -> v0.3.0
 
 ### Important: v0.3.3 Gradient Scaling Fix
 

@@ -103,7 +103,7 @@ $$\min_{\mathbf{w}_n \ge 0} || \mathbf{A}_n \mathbf{w}_n - \mathbf{b}_n ||_2^2$$
 **Computational steps per source $n$:**
 
 1. Compute precision-weighted observation: $\mathbf{y}'_n = \mathbf{y}_n \oslash \boldsymbol{\sigma}_n$ (Shape: $M_n$)
-2. Compute dense matrix: $\mathbf{U}_n = \mathbf{R}_n \mathbf{V}$ (Sparse × Dense → Dense, Shape: $M_n \times K$)
+2. Compute dense matrix: $\mathbf{U}_n = \mathbf{R}_n \mathbf{V}$ (Sparse × Dense -> Dense, Shape: $M_n \times K$)
 3. Compute design matrix: $\mathbf{A}_n = \mathbf{U}_n \oslash \boldsymbol{\sigma}_n[:, \text{newaxis}]$ (Shape: $M_n \times K$)
 4. Solve: $\mathbf{w}_n = \text{scipy.optimize.nnls}(\mathbf{A}_n, \mathbf{y}'_n)[0]$
 
@@ -478,9 +478,9 @@ $$S_{ij} = \frac{\mathbf{v}_i \cdot \mathbf{v}_j}{||\mathbf{v}_i|| \, ||\mathbf{
 Properties:
 - Range: [-1, 1] (for normalized vectors)
 - S_ii = 1.0 (identical components)
-- S_ij ≈ 1.0 → nearly identical (potential "twins")
-- S_ij ≈ 0 → orthogonal
-- S_ij ≈ -1 → anti-correlated (rare for non-negative spectra)
+- S_ij ≈ 1.0 -> nearly identical (potential "twins")
+- S_ij ≈ 0 -> orthogonal
+- S_ij ≈ -1 -> anti-correlated (rare for non-negative spectra)
 
 **Numerical Stability:**
 
@@ -585,7 +585,7 @@ def prune_and_sort_dictionary(V, W, similarity_threshold=0.95, method='complete'
     }
 ```
 
-### Usage in ALS-WNMF → HALS Pipeline
+### Usage in ALS-WNMF -> HALS Pipeline
 
 **Recommended Workflow:**
 ```python
@@ -598,7 +598,7 @@ V_als, W_als, _ = als_wnmf(
 V_pruned, W_pruned, info = prune_and_sort_dictionary(
     V_als, W_als, similarity_threshold=0.95
 )
-print(f"Pruned: {info['K_before']} → {info['K_after']} components")
+print(f"Pruned: {info['K_before']} -> {info['K_after']} components")
 
 # Step 3: HALS refinement (faster with smaller K)
 V_final, W_final, _ = hals_wnmf(
