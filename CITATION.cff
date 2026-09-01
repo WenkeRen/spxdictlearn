@@ -1,0 +1,41 @@
+# CITATION.cff — machine-readable citation metadata for the spxdictlearn package.
+# Replace the `preferred-citation` placeholder with the journal reference / DOI
+# once the accompanying paper is accepted.
+cff-version: 1.2.0
+message: >-
+  If you use spxdictlearn in your research, please cite the accompanying
+  paper (see preferred-citation).
+type: software
+title: >-
+  spxdictlearn: ALS-WNMF / HALS-WNMF dictionary learning for heterogeneous
+  SPHEREx spectrophotometry
+authors:
+  - family-names: Ren
+    given-names: Wenke
+    email: wenkeren.astro@gmail.com
+    orcid: "https://orcid.org/0000-0002-3742-6609"
+version: 0.4.1
+date-released: "2026-09-01"
+license: MIT
+repository-code: "https://github.com/WenkeRen/spxdictlearn"
+abstract: >-
+  Weighted non-negative matrix factorization (ALS-WNMF with a HALS refinement)
+  for extracting empirical spectral templates from sparse, unaligned, noisy
+  spectrophotometry, built for SPHEREx observations. Supports response-matrix
+  projection, frozen-column two-stage training, similarity-based dictionary
+  pruning, and parallel NNLS E-steps (optional Numba backend).
+keywords:
+  - astronomy
+  - SPHEREx
+  - spectral templates
+  - dictionary learning
+  - non-negative matrix factorization
+preferred-citation:
+  type: article
+  title: >-
+    Data-Driven Near-Infrared Spectral Templates for SPHEREx: Disentangling AGN
+    and Host Galaxy Emission
+  authors:
+    - family-names: Ren
+      given-names: Wenke
+  journal: "TODO: journal reference / DOI to be added upon acceptance"

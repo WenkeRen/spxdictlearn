@@ -1,0 +1,17 @@
+# spxdictlearn runtime dependencies
+# Install with:  pip install -r requirements.txt
+# (or `pip install -e ".[all]"` for the same set as editable extras)
+
+# --- Core (src/spxdictlearn/ hard imports) ---
+numpy>=1.26,<3.0
+scipy>=1.12,<2.0
+joblib>=1.2,<2.0
+
+# --- Recommended: GIL-free NNLS for the parallel E-step ---
+# Auto-falls back to scipy.optimize.nnls (NUMBA_AVAILABLE=False) if omitted,
+# but the SPHEREx-scale pipeline expects the numba solver.
+numba>=0.61
+
+# --- Example script (scripts/run_nmf.py): plotting + CSV I/O ---
+matplotlib>=3.7
+pandas>=2.0

@@ -1,0 +1,110 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spxdictlearn"
+version = "0.4.1"
+description = "ALS-WNMF / HALS-WNMF spectral decomposition for heterogeneous SPHEREx observations"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.11"
+authors = [
+    {name = "Wenke Ren", email = "wenkeren.astro@gmail.com"},
+]
+keywords = [
+    "astronomy",
+    "nmf",
+    "matrix-factorization",
+    "spherex",
+    "spectroscopy",
+    "spectral-decomposition",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Astronomy",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+]
+# Hard runtime dependencies: only what src/spxdictlearn/ unconditionally imports.
+#   numpy  -> array math everywhere
+#   scipy  -> sparse (csr_matrix), stats.norm (Gaussian CDF response integration),
+#             optimize.nnls, cluster.hierarchy + spatial.distance (pruning),
+#             ndimage.gaussian_filter1d (smoothing)
+#   joblib -> Parallel E-step + chunked M-step reduction
+dependencies = [
+    "numpy>=1.26,<3.0",
+    "scipy>=1.12,<2.0",
+    "joblib>=1.2,<2.0",
+]
+
+[project.optional-dependencies]
+# GIL-free projected-gradient NNLS for a parallel E-step. The package falls back
+# to scipy.optimize.nnls (NUMBA_AVAILABLE=False) if numba is absent, so this is
+# optional but strongly recommended for the real SPHEREx-scale pipeline.
+fast = ["numba>=0.61"]
+# Used only by the example script scripts/run_nmf.py (plotting + CSV export).
+viz = ["matplotlib>=3.7"]
+io = ["pandas>=2.0"]
+# Convenience extras
+all = ["spxdictlearn[fast,viz,io]"]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.1",
+    "mypy>=1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/WenkeRen/spxdictlearn"
+Repository = "https://github.com/WenkeRen/spxdictlearn"
+Issues = "https://github.com/WenkeRen/spxdictlearn/issues"
+
+# --- Packaging: src layout (replaces the old setup.py) ---
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# --- Quality tooling (mirrors spxquery / global CLAUDE.md) ---
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "C90", # mccabe complexity
+]
+ignore = [
+    "F821",  # Undefined name (forward references in type hints)
+    "F841",  # Local variable assigned but never used
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 30  # Accommodate complex math / visualization functions
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+addopts = "-v"
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
